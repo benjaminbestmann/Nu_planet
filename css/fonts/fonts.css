@@ -1,0 +1,26 @@
+ @font-face {
+   font-family: Lemon;
+   src: url('lemon_milk/LemonMilklightitalic.otf');
+ }
+
+ #header1 {
+   font-family: Lemon;
+   color: white;
+   text-shadow: 1px 1px 4px orange;
+ }
+
+ .box1 {
+  display: inline-block;
+  text-align: center;
+}
+
+.box2 {
+  display: inline-block;
+  position: absolute;
+  right: 0px;
+}
+
+ .navbar {
+   display: block;
+   text-align: center;
+ }
