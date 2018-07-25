@@ -19,6 +19,12 @@ class UserData(ndb.Model):
     imageurl = ndb.StringProperty(required=False)
     email = ndb.StringProperty(required=False)
 
+class UserFood(ndb.Model):
+    email = ndb.StringProperty(required=False)
+    food = ndb.StringProperty(required=False)
+    place = ndb.StringProperty(required=False)
+    created_at = ndb.DateTimeProperty(auto_now_add=True)
+
 class MainPage(webapp2.RequestHandler):
     def get(self):
         loginTemplate = jinja_environment.get_template('index.html')
@@ -31,8 +37,22 @@ class LoginPage(webapp2.RequestHandler):
 
 class UserPage(webapp2.RequestHandler):
     def get(self):
+        query1 = UserFood.query()
+        food = query1.order(-UserFood.created_at).fetch(limit=10)
+        dict = {
+            "string" : food
+            }
         userTemplate = jinja_environment.get_template('html5up-big-picture/user.html')
-        self.response.write(userTemplate.render())
+        self.response.write(userTemplate.render(dict))
+
+    def post(self):
+        user_email = self.request.get('email')
+        user_food = self.request.get('food')
+        user_place = self.request.get('place')
+        user_input = UserFood(food = user_food, place = user_place, email = user_email)
+        user_input.put()
+
+        self.redirect('/user')
 
 
 # class UserSearch(ndb.Model):
@@ -101,26 +121,6 @@ class  DataEndpoint(webapp2.RequestHandler):
         myuser.email = userdata.get('email')
         myuser.put()
 
-class Food(webapp2.RequestHandler):
-    def get(self):
-        foodTemplate = jinja_env.get_template('Templates/foodInput.html')
-        self.response.write(foodTemplate.render())
-        my_query = UserFood.query()
-        list = my_query.fetch()
-    def post(self):
-        endTemplate = jinja_env.get_template('Templates/food.html')
-        # user = users.get_current_user()
-        user_email = self.request.get('email')
-        user_food = self.request.get('food')
-        user_place = self.request.get('place')
-        # print(userKey)
-        user_input2 = UserFood(food = user_food, place = user_place, email = user_email)
-        # user_input2 = UserFood(food = user_food, place = user_place, parent = userKey)
-        user_input2.put()
-        user_input = {
-            'food': user_food,
-            'place': user_place,}
-        self.response.write(endTemplate.render(user_input))
 
 class QueryHandler(webapp2.RequestHandler):
     def get(self):
