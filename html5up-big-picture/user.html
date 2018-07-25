@@ -9,10 +9,15 @@
 		<title>User Dashboard</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="google-signin-client_id" content="177612378632-2edgn2rlc7ju8h0v71k7dqash0ndvqho.apps.googleusercontent.com">
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
 		<link rel="stylesheet" href="/assets-custom/css/main.css" />
+		<script src="/js/NuPlanet.js"></script>
 		<noscript><link rel="stylesheet" href="/assets-custom/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
+
+			<div class="g-signin2 hide" data-theme="dark"></div>
 
 		<!-- Header -->
 			<header id="header">
@@ -20,10 +25,10 @@
 				<nav>
 					<ul>
 						<li><a href="#intro">Home</a></li>
-						<li><a href="#one">What I Do</a></li>
+						<li><a href="#one">Food Tracker</a></li>
 						<li><a href="#two">Who I Am</a></li>
 						<li><a href="#work">My Work</a></li>
-						<li><a href="#contact">Contact</a></li>
+						<li><a href="#" id="signout">Sign Out</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -118,7 +123,7 @@
 		<!-- Contact -->
 			<section id="contact" class="main style3 secondary">
 				<div class="content">
-					<header>
+					<!-- <header>
 						<h2>Say Hello.</h2>
 						<p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.</p>
 					</header>
@@ -133,7 +138,7 @@
 								<li><input type="submit" value="Send Message" /></li>
 							</ul>
 						</form>
-					</div>
+					</div> -->
 				</div>
 			</section>
 
