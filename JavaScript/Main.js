@@ -1,24 +1,4 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ß
 
 window.onload = function(){
   main();
