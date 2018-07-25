@@ -4,7 +4,7 @@ threadsafe: true
 
 
 handlers:
-- url: /assets
+- url: /assets-custom
   static_dir: html5up-big-picture/assets
 - url: /assets
   static_dir: assets
