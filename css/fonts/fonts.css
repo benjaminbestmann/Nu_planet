@@ -3,11 +3,22 @@
    src: url('lemon_milk/LemonMilklightitalic.otf');
  }
 
+ @font-face {
+   font-family: Lotte;
+   src: url('lottepaperfang.ttf');
+ }
+
+html {
+  background-color: #ccffee;
+}
+
  #header1 {
    font-family: Lemon;
    color: white;
-   text-shadow: 1px 1px 4px orange;
+   text-shadow: 1px 1px 4px darkgreen;
  }
+
+
 
  .box1 {
   display: inline-block;
@@ -17,10 +28,24 @@
 .box2 {
   display: inline-block;
   position: absolute;
-  right: 0px;
+  right: 30px;
+  top: 28px;
 }
 
  .navbar {
    display: block;
    text-align: center;
+   background-color: white;
  }
+
+#user {
+  font-family: Lotte;
+  text-align: center;
+}
+
+#menu_icon {
+  position: absolute;
+  left: 30px;
+  top: 28px;
+  height: 45px;
+}

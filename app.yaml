@@ -4,14 +4,16 @@ threadsafe: true
 
 
 handlers:
-- url: /css
-  static_dir: css
-- url: /fonts
-  static_dir: fonts
-- url: /style
-  static_dir: style
+- url: /assets-custom
+  static_dir: html5up-big-picture/assets
+- url: /assets
+  static_dir: assets
 - url: /js
-  static_dir: js
+  static_dir: html5up-big-picture/assets/js
+- url: /images
+  static_dir: html5up-big-picture/assets/css/images
+- url: /images
+  static_dir: html5up-big-picture/assets/images
 - url: /.*
   script: main.app
 
