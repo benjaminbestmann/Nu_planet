@@ -5,9 +5,9 @@ window.onload = function(){
 main = function(){
   let sign_out = document.getElementById("signout");
   sign_out.onclick = signOut;
-  // var emailInput = document.getElementById('emailInput');
-  // console.log(emailInput);
-  // emailInput.value = localStorage["user_email"];
+  var emailInput = document.getElementById('emailInput');
+  console.log(emailInput);
+  emailInput.value = localStorage["user_email"];
 };
 
 
