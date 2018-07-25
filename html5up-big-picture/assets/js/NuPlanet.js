@@ -3,10 +3,13 @@ window.onload = function(){
 }
 
 main = function(){
-  var emailInput = document.getElementById('emailInput');
-  console.log(emailInput);
-  emailInput.value = localStorage["user_email"];
+  let sign_out = document.getElementById("signout");
+  sign_out.onclick = signOut;
+  // var emailInput = document.getElementById('emailInput');
+  // console.log(emailInput);
+  // emailInput.value = localStorage["user_email"];
 };
+
 
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
@@ -27,12 +30,13 @@ function onSignIn(googleUser) {
   // document.getElementById('user').innerText = "Welcome to NuPlanet " + profile.getGivenName();
   sendData(userdata);
   localStorage["user_email"] = profile.getEmail();
+  window.location.href = "/user";
 }
-//Maireen redirect
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
     console.log('User signed out.');
+    window.location.href = "/";
   });
 }
 
