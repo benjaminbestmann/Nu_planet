@@ -8,6 +8,7 @@
 	<head>
 		<title>User Dashboard</title>
 		<meta charset="utf-8" />
+		<script src="/js/NuPlanet.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="google-signin-client_id" content="177612378632-2edgn2rlc7ju8h0v71k7dqash0ndvqho.apps.googleusercontent.com">
 		<script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -51,11 +52,30 @@
 			<section id="one" class="main style2 right dark fullscreen">
 				<div class="content box style2">
 					<header>
-						<h2>What I Do</h2>
+						<h2>Food Tracker</h2>
 					</header>
-					<p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.
-					Fusce blandit ultrices sapien, in accumsan orci rhoncus eu. Sed sodales venenatis arcu,
-					id varius justo euismod in. Curabitur egestas consectetur magna.</p>
+					 <form method="POST">
+					<div class = "choose">
+	          <input id="emailInput" name = "email" hidden/> <br/>
+	          Enter food: <input name="food" /><br/>
+	          Enter from where:  <input name="place" /><br/>
+		 				<p></p><br/>
+	          <input type="submit" name="button_1" value="Submit">
+	          <input type="reset" name="button_2" value="Reset">
+					</form>
+				</div>
+			</div>
+			<!-- </section>
+			<section id="one" class="main style2 left dark fullscreen"> -->
+				<div class="content box style2">
+					<header>
+						<h2>Past Food Entries</h2>
+					</header>
+					<p>
+						{% for i in string %}
+								<p>Food Item: {{i.food}} | From: {{i.place}}</p>
+						{% endfor %}
+					</p>
 				</div>
 				<a href="#two" class="button style2 down anchored">Next</a>
 			</section>
