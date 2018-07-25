@@ -26,8 +26,8 @@
 				<nav>
 					<ul>
 						<li><a href="#intro">Home</a></li>
-						<li><a href="#one">Food Tracker</a></li>
-						<li><a href="#two">Who I Am</a></li>
+						<li><a href="#one">Environment Footprint</a></li>
+						<li><a href="#two">Food tracker</a></li>
 						<li><a href="#work">My Work</a></li>
 						<li><a href="#" id="signout">Sign Out</a></li>
 					</ul>
@@ -40,7 +40,7 @@
 					<header>
 						<h2>Hey.</h2>
 					</header>
-					<p>Welcome to <strong>Big Picture</strong> a responsive site template designed by <a href="https://html5up.net">HTML5 UP</a><br />
+					<p>Welcome to <strong>NuPlanet</strong> a responsive site template designed by <a href="https://html5up.net">HTML5 UP</a><br />
 					and released for free under the <a href="https://html5up.net/license">Creative Commons Attribution license</a>.</p>
 					<footer>
 						<a href="#one" class="button style2 down">More</a>
@@ -48,8 +48,20 @@
 				</div>
 			</section>
 
+			<section id="one" class="main style2 left dark fullscreen">
+				<div class="content box style2">
+					<header>
+						<h2>Who I Am</h2>
+					</header>
+					<p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.
+					Fusce blandit ultrices sapien, in accumsan orci rhoncus eu. Sed sodales venenatis arcu,
+					id varius justo euismod in. Curabitur egestas consectetur magna.</p>
+				</div>
+				<a href="#two" class="button style2 down anchored">Next</a>
+			</section>
+
 		<!-- One -->
-			<section id="one" class="main style2 right dark fullscreen">
+			<section id="two" class="main style2 right dark fullscreen">
 				<div class="content box style2">
 					<header>
 						<h2>Food Tracker</h2>
@@ -65,23 +77,24 @@
 					</form>
 				</div>
 			</div>
-			<!-- </section>
-			<section id="one" class="main style2 left dark fullscreen"> -->
+		</section>
+			<section id="two" class="main style2 left dark fullscreen">
 				<div class="content box style2">
 					<header>
 						<h2>Past Food Entries</h2>
 					</header>
 					<p>
+
 						{% for i in string %}
 								<p>Food Item: {{i.food}} | From: {{i.place}}</p>
 						{% endfor %}
 					</p>
 				</div>
-				<a href="#two" class="button style2 down anchored">Next</a>
+				<a href="#work" class="button style2 down anchored">Next</a>
 			</section>
 
 		<!-- Two -->
-			<section id="two" class="main style2 left dark fullscreen">
+			<!-- <section id="two" class="main style2 left dark fullscreen">
 				<div class="content box style2">
 					<header>
 						<h2>Who I Am</h2>
@@ -91,13 +104,13 @@
 					id varius justo euismod in. Curabitur egestas consectetur magna.</p>
 				</div>
 				<a href="#work" class="button style2 down anchored">Next</a>
-			</section>
+			</section> -->
 
 		<!-- Work -->
 			<section id="work" class="main style3 primary">
 				<div class="content">
 					<header>
-						<h2>My Work</h2>
+						<h2>Environment Footprint</h2>
 						<p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.
 						Fusce blandit ultrices sapien, in accumsan orci rhoncus eu. Sed sodales venenatis
 						arcu, id varius justo euismod in. Curabitur egestas consectetur magna vitae.</p>
