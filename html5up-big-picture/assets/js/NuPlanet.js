@@ -32,6 +32,7 @@ function onSignIn(googleUser) {
   localStorage["user_email"] = profile.getEmail();
   window.location.href = "/user";
 }
+//Maireen redirect
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
