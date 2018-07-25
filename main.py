@@ -6,11 +6,18 @@ import urllib
 import urllib2
 from google.appengine.ext import ndb
 from google.appengine.api import urlfetch
+from google.appengine.api import users
 
 
 jinja_environment = jinja2.Environment(
     loader = jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
+class UserData(ndb.Model):
+    id = ndb.StringProperty(required=False)
+    fullname = ndb.StringProperty(required=False)
+    givenname = ndb.StringProperty(required=False)
+    imageurl = ndb.StringProperty(required=False)
+    email = ndb.StringProperty(required=False)
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
@@ -79,9 +86,57 @@ class UserPage(webapp2.RequestHandler):
 #         'locations' : locations,
 #         'search_term': search_term,
 #         }
+class  DataEndpoint(webapp2.RequestHandler):
+    def post(self):
+        print("post")
+        requestObject = json.loads(self.request.body)
+        userdata = requestObject.get('data')
+        # myuser = user_key
+        myuser= UserData()
+        print(list(userdata.keys()))
+        myuser.id = userdata.get('id')
+        myuser.fullname = userdata.get('fullname')
+        myuser.givenname = userdata.get('givenname')
+        myuser.imageurl = userdata.get('imageurl')
+        myuser.email = userdata.get('email')
+        myuser.put()
+
+class Food(webapp2.RequestHandler):
+    def get(self):
+        foodTemplate = jinja_env.get_template('Templates/foodInput.html')
+        self.response.write(foodTemplate.render())
+        my_query = UserFood.query()
+        list = my_query.fetch()
+    def post(self):
+        endTemplate = jinja_env.get_template('Templates/food.html')
+        # user = users.get_current_user()
+        user_email = self.request.get('email')
+        user_food = self.request.get('food')
+        user_place = self.request.get('place')
+        # print(userKey)
+        user_input2 = UserFood(food = user_food, place = user_place, email = user_email)
+        # user_input2 = UserFood(food = user_food, place = user_place, parent = userKey)
+        user_input2.put()
+        user_input = {
+            'food': user_food,
+            'place': user_place,}
+        self.response.write(endTemplate.render(user_input))
+
+class QueryHandler(webapp2.RequestHandler):
+    def get(self):
+        query1 = UserFood.query()
+        food = query1.fetch()
+        print food
+        dict = {
+            "string" : food
+            }
+        endTemplate = jinja_env.get_template('Templates/food.html')
+        self.response.write(endTemplate.render(dict))
 
 app = webapp2.WSGIApplication([
       ('/', MainPage),
       ('/login', LoginPage),
       ('/user', UserPage),
+      ('/data', DataEndpoint),
+      ('/query',QueryHandler),
 ])

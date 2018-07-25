@@ -8,6 +8,8 @@ handlers:
   static_dir: assets
 - url: /html5up-big-picture/assets
   static_dir: assets
+- url: /js
+  static_dir: js
 - url: /html5up-big-picture/assets/js
   static_dir: js
 - url: /assets/images
