@@ -19,4 +19,4 @@ libraries:
 - name: jinja2
   version: latest
 - name: webapp2
-  version: latest
+  version: "2.5.2"
