@@ -27,8 +27,8 @@
 					<ul>
 						<li><a href="#intro">Home</a></li>
 						<li><a href="#one">Environmental Footprint</a></li>
-						<li><a href="#two">Food Tracker</a></li>
-						<li><a href="#work">Nearby Food</a></li>
+						<li><a href="#two">Food Tracker/Nearby Food</a></li>
+						<li><a href="#work">About Us</a></li>
 						<li><a href="#" id="signout">Sign Out</a></li>
 					</ul>
 				</nav>
@@ -47,14 +47,24 @@
 				</div>
 			</section>
 
-			<section id="one" class="main style2 left dark fullscreen">
+			<section id="one" class="main style2 right dark fullscreen">
 				<div class="content box style2">
 					<header>
-						<h2>Who I Am</h2>
+						<h2>Environmental Footprint</h2>
 					</header>
 					<p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.
 					Fusce blandit ultrices sapien, in accumsan orci rhoncus eu. Sed sodales venenatis arcu,
 					id varius justo euismod in. Curabitur egestas consectetur magna.</p>
+				</div>
+			</section>
+
+			<section id="one" class="main style2 left dark fullscreen">
+			  <div class="content box style2">
+					<header>
+						<h2>Your Daily Calorie Intake</h2>
+					</header>
+						<div class="yz-widget" data-calculator-type="daily_need" data-language="en" data-unit-system="imperial" data-background-color="#FDFEFE" data-text-color="#212121" data-primary-color="#98c593" data-alternate-background-color="#FDFEFE" data-alternate-text-color="#FFFFFF" data-secondary-color="#BE4736"><span class="yz-copyright">Powered by <a href="https://www.yazio.com/en/calorie-intake-calculator">YAZIO</a></span></div>
+					<script src="https://widget.yazio.com/calculator.js" async></script>
 				</div>
 				<a href="#two" class="button style2 down anchored">Next</a>
 			</section>
@@ -72,7 +82,16 @@
 	          Enter from where:  <input name="place" /><br/>
 		 				<p></p><br/>
 	          <input type="submit" name="button_1" value="Submit">
-	          <input type="reset" name="button_2" value="Reset">
+	          <input type="reset" name="button_2" value="Reset"></br>
+						<p></p></br>
+						<header>
+							<h2 class="block">Past Food Entries: </h2>
+						</header>
+							<p class="block">
+								{% for i in string %}
+										Food Item: {{i.food}} | From: {{i.place}}</br>
+								{% endfor %}
+							</p>
 					</form>
 				</div>
 			</div>
@@ -99,9 +118,7 @@
 					<header>
 						<h2>Nearby Food</h2>
 					</header>
-					<p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.
-					Fusce blandit ultrices sapien, in accumsan orci rhoncus eu. Sed sodales venenatis arcu,
-					id varius justo euismod in. Curabitur egestas consectetur magna.</p>
+					<div class="widget_wrap" style="width:350px;height:400px;display:inline-block;"><iframe src="https://www.zomato.com/widgets/res_search_widget.php?entity_id=279&entity_type=city&city_id=279&language_id=1&establishment_type=284&theme=red&hideCitySearch=on&hideResSearch=on&widgetType=custom&sort=popularity" style="position:relative;width:100%;height:100%;" border="0" frameborder="0"></iframe></div>
 				</div>
 				<a href="#work" class="button style2 down anchored">Next</a>
 			</section>
@@ -110,10 +127,8 @@
 			<section id="work" class="main style3 primary">
 				<div class="content">
 					<header>
-						<h2>Environmental Footprint</h2>
-						<p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.
-						Fusce blandit ultrices sapien, in accumsan orci rhoncus eu. Sed sodales venenatis
-						arcu, id varius justo euismod in. Curabitur egestas consectetur magna vitae.</p>
+						<h2>About Us</h2>
+						<p>NuPlanet is a free app developed by CSSI students in Seattle. We hope that you can incorporate NuPlanet into your daily life, and learn to live more environmentally conscious!</p>
 					</header>
 
 					<!-- Gallery  -->

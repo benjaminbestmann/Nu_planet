@@ -1259,6 +1259,10 @@ input, select, textarea {
 				width: 2em;
 			}
 
+.widget_wrap {
+	
+}
+
 		.poptrox-popup .caption {
 			position: absolute;
 			bottom: 0;
