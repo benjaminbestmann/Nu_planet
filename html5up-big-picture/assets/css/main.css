@@ -423,6 +423,40 @@ input, select, textarea {
 		text-decoration: none;
 	}
 
+#navbar {
+	margin-bottom: 30px;
+}
+
+#sweet_treats {
+	font-family: FontAwesome;
+}
+
+#searchButton {
+	text-align: center;
+	height: 50px;
+	margin: auto;
+	width: 150px;
+}
+
+#header1 {
+	color: white;
+	font-size: 50px;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	text-align: center;
+	text-shadow: 3px 3px 3px black;
+}
+
+#center {
+	margin: auto;
+	width: 150px;
+}
+
+#maps2 {
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
 		body:before {
 			-moz-animation: spinner-show 1.5s 1 0.25s ease forwards, spinner-hide 0.25s ease-in-out forwards !important;
 			-webkit-animation: spinner-show 1.5s 1 0.25s ease forwards, spinner-hide 0.25s ease-in-out forwards !important;
@@ -1260,7 +1294,7 @@ input, select, textarea {
 			}
 
 .widget_wrap {
-	
+
 }
 
 		.poptrox-popup .caption {

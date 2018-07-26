@@ -2,7 +2,8 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>My Google Map</title>
+    <title>Nearby Sweet Treats</title>
+    <link rel="stylesheet" href="/assets-custom/css/main.css" />
     <style>
       #map{
         height:500px;
@@ -20,11 +21,23 @@
       }
     </style>
   </head>
-  <body>
-    <h1>Find your motivation</h1>
+  <body id="maps2" style="background-image:url(https://images.unsplash.com/photo-1445914897371-974b137e4402?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=659f62b11f3833ea0fffc292f8fa7bab&auto=format&fit=crop&w=1952&q=80)">
+    <header id="header">
+      <h1><a href="/user">NuPlanet</a></h1>
+      <nav id="navbar">
+        <ul>
+          <li><a href="#intro">Home</a></li>
+          <li><a href="#one">Water Footprint</a></li>
+          <li><a href="#two">Food Tracker/Nearby Food</a></li>
+          <li><a href="#work">About Jinjavitis</a></li>
+          <li><a href="#" id="signout">Sign Out</a></li>
+        </ul>
+      </nav>
+    </header>
+    <h1 id="header1">Nearby Sweet Treats</h1>
     <div id="map"></div>
     <input type ="text" id ="search" placeholder = "Try 'Gym'"><br/>
-    <button id="searchButton">Search</button><br/>
+    <div id="center"><button id="searchButton">Search</button></div><br/>
     <p id="demo"></p>
   </input>
     <script>
