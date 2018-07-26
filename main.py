@@ -8,7 +8,7 @@ import logging
 from google.appengine.ext import ndb
 from google.appengine.api import urlfetch
 from google.appengine.api import users
-
+# from dictionary import GallonsWater
 
 jinja_environment = jinja2.Environment(
     loader = jinja2.FileSystemLoader(
@@ -138,6 +138,54 @@ class QueryHandler(webapp2.RequestHandler):
         # template = jinja_environment.get_template('Templates/maps2.html')
         # self.response.write(template.render(variables))
 
+class Water(webapp2.RequestHandler):
+    def get(self):
+        inputTemplate = jinja_environment.get_template('html5up-big-picture/user.html')
+        self.response.write(inputTemplate.render())
+
+    def post(self):
+        meattemplate = jinja_environment.get_template('html5up-big-picture/meat.html')
+        liquidtemplate = jinja_environment.get_template('html5up-big-picture/liquids.html')
+        othertemplate = jinja_environment.get_template('html5up-big-picture/other.html')
+        veggietemplate = jinja_environment.get_template('html5up-big-picture/vegetables.html')
+        user_input = self.request.get('user_food_category')
+        results = {
+            "type": user_input
+            }
+        if user_input == "meats":
+            self.response.write(meattemplate.render())
+        elif user_input == "liquids":
+            self.response.write(liquidtemplate.render())
+        elif user_input == "other":
+            self.response.write(othertemplate.render())
+        elif user_input == "vegetables":
+            self.response.write(veggietemplate.render())
+
+class Wateroz(webapp2.RequestHandler):
+    def get(self):
+        lTemplate = jinja_environment.get_template('html5up-big-picture/liquids.html')
+        self.response.write(lTemplate.render())
+    def post(self):
+        template = jinja_environment.get_template('html5up-big-picture/info.html')
+        user_drink = self.request.get('user_drinktype')
+        user_amount = self.request.get('amount')
+        user_amount = float(user_amount)
+        amount = (user_amount/128.0)
+        if user_drink == "tea":
+            amount = float(amount*108.0)
+        if user_drink == "coffee":
+            amount = float(amount*1026.0)
+        if user_drink == "beer":
+            amount = float(amount*296.0)
+        if user_drink == "wine":
+            amount = float(amount*872.0)
+        results = {
+            "drink": user_drink,
+            "amount": user_amount,
+            "ounces": amount,
+            }
+        # self.response.write("%.3f" %amount)
+        self.response.write(template.render(results))
 
 
 app = webapp2.WSGIApplication([
@@ -146,4 +194,6 @@ app = webapp2.WSGIApplication([
       ('/user', UserPage),
       ('/data', DataEndpoint),
       ('/query',QueryHandler),
+      ('/water', Water ),
+      ('/liquid', Wateroz),
 ])
