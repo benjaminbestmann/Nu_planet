@@ -175,6 +175,7 @@ class Water(webapp2.RequestHandler):
             self.response.write(meattemplate.render())
         elif user_input == "liquids":
             self.response.write(liquidtemplate.render())
+            self.redirect('/liquid')
         elif user_input == "other":
             self.response.write(othertemplate.render())
         elif user_input == "vegetables":
@@ -191,19 +192,48 @@ class Wateroz(webapp2.RequestHandler):
         user_amount = float(user_amount)
         amount = (user_amount/128.0)
         if user_drink == "tea":
+            amount1 = float(amount*1026.0)
+            amount2 = float(amount*296.0)
+            amount3 = float(amount*872)
             amount = float(amount*108.0)
+            user1 = "Coffee"
+            user2 = "Beer"
+            user3 = "Wine"
         if user_drink == "coffee":
+            amount1 = float(amount*108.0)
+            amount2 = float(amount*296.0)
+            amount3 = float(amount*872)
             amount = float(amount*1026.0)
+            user1 = "Tea"
+            user2 = "Beer"
+            user3 = "Wine"
         if user_drink == "beer":
+            amount1 = float(amount*108.0)
+            amount2 = float(amount*1026.0)
+            amount3 = float(amount*872.0)
             amount = float(amount*296.0)
+            user1 = "Tea"
+            user2 = "Coffee"
+            user3 = "Wine"
         if user_drink == "wine":
+            mount1 = float(amount*108.0)
+            amount2 = float(amount*1026.0)
+            amount3 = float(amount*296.0)
             amount = float(amount*872.0)
+            user1 = "Tea"
+            user2 = "Coffee"
+            user3 = "Beer"
         results = {
             "drink": user_drink,
             "amount": user_amount,
             "ounces": amount,
+            "ounce1": amount1,
+            "ounce2": amount2,
+            "ounce3": amount3,
+            "drink1": user1,
+            "drink2": user2,
+            "drink3": user3,
             }
-        # self.response.write("%.3f" %amount)
         self.response.write(template.render(results))
 
 app = webapp2.WSGIApplication([
