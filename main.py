@@ -15,6 +15,13 @@ jinja_environment = jinja2.Environment(
         os.path.dirname(__file__)))
 
 
+class Visitor(ndb.Model):
+    name =  ndb.StringProperty(required=True)
+    email =  ndb.StringProperty(required=True)
+    id =  ndb.StringProperty(required=True)
+    # Images can only be stored as "BlobProperty"
+    image = ndb.BlobProperty()
+
 class UserSearch(ndb.Model):
     term = ndb.StringProperty(required=True)
     count = ndb.IntegerProperty(required=True)
@@ -92,6 +99,8 @@ class LoginPage(webapp2.RequestHandler):
 class UserPage(webapp2.RequestHandler):
     def get(self):
         query1 = UserFood.query()
+        user = users.get_current_user()
+        nickname = user.nickname()
         food = query1.order(-UserFood.created_at).fetch(limit=10)
         total=0
         for i in food:
@@ -100,7 +109,8 @@ class UserPage(webapp2.RequestHandler):
             total= i.calories + total
         dict = {
             "string" : food,
-            "total": total
+            "total": total,
+            "user": nickname
             }
         userTemplate = jinja_environment.get_template('html5up-big-picture/user.html')
         self.response.write(userTemplate.render(dict))
@@ -146,7 +156,6 @@ class QueryHandler(webapp2.RequestHandler):
 
         # template = jinja_environment.get_template('Templates/maps2.html')
         # self.response.write(template.render(variables))
-
 
 
 app = webapp2.WSGIApplication([

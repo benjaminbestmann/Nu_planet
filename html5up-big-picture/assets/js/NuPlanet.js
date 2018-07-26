@@ -8,8 +8,19 @@ main = function(){
   var emailInput = document.getElementById('emailInput');
   console.log(emailInput);
   emailInput.value = localStorage["user_email"];
+  callName();
 };
 
+function callName(){
+  nickname = document.getElementById("user_name");
+  if (nickname != null) {
+    auth = gapi.auth2.getAuthInstance();
+    user = auth.currentUser.get();
+    profile = user.getBasicProfile();
+    givenName = profile.getGivenName();
+    nickname.textContent = givenName;
+  }
+}
 
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
