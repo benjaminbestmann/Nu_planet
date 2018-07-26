@@ -51,8 +51,7 @@ class UserPage(webapp2.RequestHandler):
         user_place = self.request.get('place')
         user_input = UserFood(food = user_food, place = user_place, email = user_email)
         user_input.put()
-
-        self.redirect('/')
+        self.redirect('/user')
 
 
 # class UserSearch(ndb.Model):

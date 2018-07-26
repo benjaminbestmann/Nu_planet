@@ -39,7 +39,6 @@ function signOut() {
     window.location.href = "/";
   });
 }
-
 function sendData(data){
   var xhr = new XMLHttpRequest();
   xhr.open("POST", '/data', true);
@@ -47,3 +46,7 @@ function sendData(data){
   var actualObject = {'data': data}
   xhr.send(JSON.stringify(actualObject));
 }
+// fucntion switchContent(){
+//     document.getElementById('content1').style.display = 'none';
+//     document.getElementById('content2').style.display = 'block';
+// }
