@@ -132,11 +132,13 @@ class QueryHandler(webapp2.RequestHandler):
         dict = {
             "string" : food
             }
-        endTemplate = jinja_env.get_template('Templates/food.html')
-        self.response.write(endTemplate.render(dict))
+        template = jinja_environment.get_template('Templates/maps2.html')
+        self.response.write(template.render(dict))
 
-        template = jinja_environment.get_template('maps.html')
-        self.response.write(template.render(variables))
+        # template = jinja_environment.get_template('Templates/maps2.html')
+        # self.response.write(template.render(variables))
+
+
 
 app = webapp2.WSGIApplication([
       ('/', MainPage),
