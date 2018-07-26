@@ -12,6 +12,8 @@ handlers:
   static_dir: html5up-big-picture/assets/js
 - url: /images
   static_dir: html5up-big-picture/assets/css/images
+-url: /css
+  static_dir: css
 - url: /images
   static_dir: html5up-big-picture/assets/images
 - url: /.*
