@@ -25,11 +25,11 @@ function onSignIn(googleUser) {
   console.log('Given Name: ' + profile.getGivenName());
   console.log("Image URL: " + profile.getImageUrl());
   console.log("Email: " + profile.getEmail());
-  var id_token = googleUser.getAuthResponse().id_token;
-  console.log("ID Token: " + id_token);
+  // var id_token = googleUser.getAuthResponse().id_token;
+  // console.log("ID Token: " + id_token);
   // document.getElementById('user').innerText = "Welcome to NuPlanet " + profile.getGivenName();
-  sendData(userdata);
-  localStorage["user_email"] = profile.getEmail();
+  // sendData(userdata);
+  // localStorage["user_email"] = profile.getEmail();
   window.location.href = "/user";
 }
 function signOut() {

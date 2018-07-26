@@ -2226,8 +2226,16 @@ input, select, textarea {
 
 		}
 
+#intro_text {
+	text-shadow: 3px 3px 3px black;
+}
+
 .hide {
-	display: none;
+	display: none
+}
+
+.block {
+	display: block
 }
 
 /* Intro */
