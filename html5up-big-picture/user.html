@@ -26,7 +26,7 @@
 				<nav>
 					<ul>
 						<li><a href="#intro">Home</a></li>
-						<li><a href="#one">Environmental Footprint</a></li>
+						<li><a href="#one">Water Footprint</a></li>
 						<li><a href="#two">Food Tracker/Nearby Food</a></li>
 						<li><a href="#work">About Us</a></li>
 						<li><a href="#" id="signout">Sign Out</a></li>
@@ -50,11 +50,18 @@
 			<section id="one" class="main style2 right dark fullscreen">
 				<div class="content box style2">
 					<header>
-						<h2>Environmental Footprint</h2>
+						<h2>Water Footprint</h2>
 					</header>
-					<p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.
-					Fusce blandit ultrices sapien, in accumsan orci rhoncus eu. Sed sodales venenatis arcu,
-					id varius justo euismod in. Curabitur egestas consectetur magna.</p>
+					<form id = "food" method="post" action = "/water">
+						<label for="food">Choose a category:</label>
+						<select name="user_food_category">
+							<option value="liquids">Liquid</option>
+							<option value="meats">Meat</option>
+							<option value="vegetables">Vegetables</option>
+							<option value="other">Other</option>
+							<input type="submit" name="button" value="Submit">
+					</form>
+
 				</div>
 				<a href="#two" class="button style2 down anchored">Next</a>
 			</section>
