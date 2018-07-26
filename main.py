@@ -100,7 +100,7 @@ class UserPage(webapp2.RequestHandler):
     def get(self):
         query1 = UserFood.query()
         user = users.get_current_user()
-        nickname = user.nickname()
+        # nickname = user.nickname()
         food = query1.order(-UserFood.created_at).fetch(limit=10)
         total=0
         for i in food:
@@ -110,7 +110,7 @@ class UserPage(webapp2.RequestHandler):
         dict = {
             "string" : food,
             "total": total,
-            "user": nickname
+            # "user": nickname
             }
         userTemplate = jinja_environment.get_template('html5up-big-picture/user.html')
         self.response.write(userTemplate.render(dict))
