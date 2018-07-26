@@ -12,7 +12,7 @@ from google.appengine.api import users
 
 jinja_environment = jinja2.Environment(
     loader = jinja2.FileSystemLoader(
-        os.path.dirname(__file__) + '/templates'))
+        os.path.dirname(__file__)))
 
 
 class UserSearch(ndb.Model):
