@@ -42,7 +42,7 @@
 					<header>
 						<h2>Welcome back to NuPlanet</h2>
 					</header>
-					<p id="into_text">Here on the user dashboard, you can input your daily food intake, how many calories you ate, and your weekly environmental footprint.</p>
+					<p id="into_text">Here on the user dashboard, you can find out your estimated daily calorie intake based on your unique parameters. You can also insert the amount of calories per meal to stay on your calorie limit. At the bottom of the page, you can see your statistics and earth friendliness status.</p>
 					<footer>
 						<a href="#one" class="button style2 down">More</a>
 					</footer>
@@ -81,7 +81,8 @@
 					<div class = "choose">
 	          <input id="emailInput" name = "email" hidden/> <br/>
 	          Enter food: <input name="food" /><br/>
-	          Enter from where:  <input name="place" /><br/>
+	          Enter restaurant:  <input name="place" /><br/>
+						Enter amount of calories: <input type=number name="calories" /></br>
 		 				<p></p><br/>
 	          <input type="submit" name="button_1" value="Submit">
 	          <input type="reset" name="button_2" value="Reset"></br>
@@ -91,9 +92,13 @@
 						</header>
 							<p class="block">
 								{% for i in string %}
-										Food Item: {{i.food}} | From: {{i.place}}</br>
+										Food Item: {{i.food}} | From: {{i.place}} | Calories: {{i.calories}} </br>
 								{% endfor %}
 							</p>
+					  <header>
+							<h2>Total Calories:</h2>
+						</header>
+						<p>From last ten inputs: {{total}}</p>
 					</form>
 				</div>
 			</div>

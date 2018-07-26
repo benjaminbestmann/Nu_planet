@@ -76,6 +76,7 @@ class UserFood(ndb.Model):
     email = ndb.StringProperty(required=False)
     food = ndb.StringProperty(required=False)
     place = ndb.StringProperty(required=False)
+    calories = ndb.IntegerProperty(required=False)
     created_at = ndb.DateTimeProperty(auto_now_add=True)
 
 class MainPage(webapp2.RequestHandler):
@@ -92,8 +93,14 @@ class UserPage(webapp2.RequestHandler):
     def get(self):
         query1 = UserFood.query()
         food = query1.order(-UserFood.created_at).fetch(limit=10)
+        total=0
+        for i in food:
+            if i.calories == None:
+                i.calories=0
+            total= i.calories + total
         dict = {
-            "string" : food
+            "string" : food,
+            "total": total
             }
         userTemplate = jinja_environment.get_template('html5up-big-picture/user.html')
         self.response.write(userTemplate.render(dict))
@@ -102,9 +109,11 @@ class UserPage(webapp2.RequestHandler):
         user_email = self.request.get('email')
         user_food = self.request.get('food')
         user_place = self.request.get('place')
-        user_input = UserFood(food = user_food, place = user_place, email = user_email)
+        user_calories = self.request.get('calories')
+        user_input = UserFood(food = user_food, place = user_place, calories= int(user_calories), email = user_email)
         user_input.put()
         self.redirect('/user')
+
 
 
 class  DataEndpoint(webapp2.RequestHandler):
