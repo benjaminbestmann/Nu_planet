@@ -36,8 +36,13 @@
       </nav>
     </header>
     <h1 id="header1">Nearby Sweet Treats</h1>
+    <div class ="message">
+      <div class ="leftWords hide">Nice Try, Go To The Gym</div>
+      <div></div>
+      <div class ="rightWords hide">Nice Try, Go To The Gym</div>
+    </div>
     <div id="map"></div>
-    <input type ="text" id ="search" placeholder = "Try 'Gym'"><br/>
+    <input type ="text" id ="search" placeholder = "Try 'Cupcake'"><br/>
     <div id="center"><button id="searchButton">Search</button></div><br/>
     <p id="demo"></p>
   </input>
@@ -110,11 +115,14 @@
             };
             console.log(seattle);
 
-
-
             // initiates the callback
             var service = new google.maps.places.PlacesService(map);
             service.textSearch(request, searchCallback);
+
+            let removeHide = document.querySelectorAll(".hide");
+            for(let i = 0; i < removeHide.length; i ++){
+              removeHide[i].classList.remove("hide");
+            };
         };
 
         function clearMarkers() {

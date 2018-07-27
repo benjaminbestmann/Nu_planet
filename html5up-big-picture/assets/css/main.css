@@ -2349,3 +2349,21 @@ input, select, textarea {
 			}
 
 		}
+	.message{
+		display: grid;
+		grid-template-columns: 25% 50% 25%;
+
+	}
+	.leftWords, .rightWords{
+		font-family: FontAwesome;
+		font-size: 40px;
+		text-align: center;
+		color: Red;
+		position: relative;
+		top: 250px;
+		animation: blinker 1s linear infinite;
+	}
+
+	.hide{
+		visibility: hidden;
+	}
