@@ -18,6 +18,7 @@ function callName(){
     user = auth.currentUser.get();
     profile = user.getBasicProfile();
     givenName = profile.getGivenName();
+    console.log("KGBOLYGB" + givenName);
     nickname.textContent = givenName;
   }
 }

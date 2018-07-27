@@ -85,6 +85,7 @@ class UserFood(ndb.Model):
     place = ndb.StringProperty(required=False)
     calories = ndb.IntegerProperty(required=False)
     created_at = ndb.DateTimeProperty(auto_now_add=True)
+    userid = ndb.StringProperty(required=False)
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
@@ -98,10 +99,14 @@ class LoginPage(webapp2.RequestHandler):
 
 class UserPage(webapp2.RequestHandler):
     def get(self):
-        query1 = UserFood.query()
+        # query1 = UserFood.query()
         user = users.get_current_user()
-        # nickname = user.nickname()
-        food = query1.order(-UserFood.created_at).fetch(limit=10)
+
+        user.id = UserFood.userid
+        database = UserFood.query().order()
+        print("HELLO LOOK AT THIS")
+        print( database)
+        food = database.order(-UserFood.created_at).fetch(limit=10)
         total=0
         for i in food:
             if i.calories == None:
@@ -173,13 +178,16 @@ class Water(webapp2.RequestHandler):
             }
         if user_input == "meats":
             self.response.write(meattemplate.render())
+            self.redirect('/meat')
         elif user_input == "liquids":
             self.response.write(liquidtemplate.render())
             self.redirect('/liquid')
         elif user_input == "other":
             self.response.write(othertemplate.render())
+            self.redirect('/other')
         elif user_input == "vegetables":
             self.response.write(veggietemplate.render())
+            self.redirect('/veggies')
 
 class Wateroz(webapp2.RequestHandler):
     def get(self):
@@ -216,7 +224,7 @@ class Wateroz(webapp2.RequestHandler):
             user2 = "Coffee"
             user3 = "Wine"
         if user_drink == "wine":
-            mount1 = float(amount*108.0)
+            amount1 = float(amount*108.0)
             amount2 = float(amount*1026.0)
             amount3 = float(amount*296.0)
             amount = float(amount*872.0)
@@ -236,6 +244,390 @@ class Wateroz(webapp2.RequestHandler):
             }
         self.response.write(template.render(results))
 
+class WaterMeat(webapp2.RequestHandler):
+    def get(self):
+        lTemplate = jinja_environment.get_template('html5up-big-picture/meat.html')
+        self.response.write(lTemplate.render())
+    def post(self):
+        template = jinja_environment.get_template('html5up-big-picture/infomeat.html')
+        user_drink = self.request.get('user_drinktype')
+        user_amount = self.request.get('amount')
+        user_amount = float(user_amount)
+        amount = user_amount
+        if user_drink == "chicken":
+            amount1 = float(amount*1847.0)
+            amount2 = float(amount*718.0)
+            amount3 = float(amount*302.0)
+            amount = float(amount*518.0)
+            user1 = "Beef"
+            user2 = "Pork"
+            user3 = "Tofu"
+        elif user_drink == "beef":
+            amount1 = float(amount*518.0)
+            amount2 = float(amount*718.0)
+            amount3 = float(amount*302.0)
+            amount = float(amount*1847.0)
+            user1 = "Chicken"
+            user2 = "Pork"
+            user3 = "Tofu"
+        elif user_drink == "pork":
+            amount1 = float(amount*518.0)
+            amount2 = float(amount*1847.0)
+            amount3 = float(amount*302.0)
+            amount = float(amount*718.0)
+            user1 = "Chicken"
+            user2 = "Beef"
+            user3 = "Tofu"
+        else:
+            amount1 = float(amount*518.0)
+            amount2 = float(amount*1847.0)
+            amount3 = float(amount*718.0)
+            amount = float(amount*302.0)
+            user1 = "Chicken"
+            user2 = "Beef"
+            user3 = "Pork"
+        results = {
+            "drink": user_drink,
+            "amount": user_amount,
+            "ounces": amount,
+            "ounce1": amount1,
+            "ounce2": amount2,
+            "ounce3": amount3,
+            "drink1": user1,
+            "drink2": user2,
+            "drink3": user3,
+            }
+        self.response.write(template.render(results))
+
+class WaterVeggies(webapp2.RequestHandler):
+    def get(self):
+        lTemplate = jinja_environment.get_template('html5up-big-picture/vegetables.html')
+        self.response.write(lTemplate.render())
+    def post(self):
+        template = jinja_environment.get_template('html5up-big-picture/infoveggies.html')
+        user_drink = self.request.get('user_drinktype')
+        user_amount = self.request.get('amount')
+        user_amount = float(user_amount)
+        amount = user_amount
+        if user_drink == "corn":
+            amount1 = float(amount*141.0)
+            amount2 = float(amount*26.0)
+            amount3 = float(amount*43.0)
+            amount4 = float(amount*98.0)
+            amount5 = float(amount*42.0)
+            amount6 = float(amount*28.0)
+            amount = float(amount*146.0)
+            user1 = "Avocado"
+            user2 = "Tomato"
+            user3 = "Eggplant"
+            user4 = "Artichokes"
+            user5 = "Cucumbers"
+            user6 = "Lettuce"
+        elif user_drink == "avocado":
+            amount1 = float(amount*146.0)
+            amount2 = float(amount*26.0)
+            amount3 = float(amount*43.0)
+            amount4 = float(amount*98.0)
+            amount5 = float(amount*42.0)
+            amount6 = float(amount*28.0)
+            amount = float(amount*141.0)
+            user1 = "Corn"
+            user2 = "Tomato"
+            user3 = "Eggplant"
+            user4 = "Artichokes"
+            user5 = "Cucumbers"
+            user6 = "Lettuce"
+        elif user_drink == "tomato":
+            amount1 = float(amount*146.0)
+            amount2 = float(amount*141.0)
+            amount3 = float(amount*43.0)
+            amount4 = float(amount*98.0)
+            amount5 = float(amount*42.0)
+            amount6 = float(amount*28.0)
+            amount = float(amount*26.0)
+            user1 = "Corn"
+            user2 = "Avocado"
+            user3 = "Eggplant"
+            user4 = "Artichokes"
+            user5 = "Cucumbers"
+            user6 = "Lettuce"
+        elif user_drink == "eggplant":
+            amount1 = float(amount*146.0)
+            amount2 = float(amount*141.0)
+            amount3 = float(amount*26.0)
+            amount4 = float(amount*98.0)
+            amount5 = float(amount*42.0)
+            amount6 = float(amount*28.0)
+            amount = float(amount*43.0)
+            user1 = "Corn"
+            user2 = "Avocado"
+            user3 = "Tomato"
+            user4 = "Artichokes"
+            user5 = "Cucumbers"
+            user6 = "Lettuce"
+        elif user_drink == "artichokes":
+            amount1 = float(amount*146.0)
+            amount2 = float(amount*141.0)
+            amount3 = float(amount*26.0)
+            amount4 = float(amount*43.0)
+            amount5 = float(amount*42.0)
+            amount6 = float(amount*28.0)
+            amount = float(amount*98.0)
+            user1 = "Corn"
+            user2 = "Avocado"
+            user3 = "Tomato"
+            user4 = "Eggplant"
+            user5 = "Cucumbers"
+            user6 = "Lettuce"
+        elif user_drink == "cucumbers":
+            amount1 = float(amount*146.0)
+            amount2 = float(amount*141.0)
+            amount3 = float(amount*26.0)
+            amount4 = float(amount*43.0)
+            amount5 = float(amount*98.0)
+            amount6 = float(amount*28.0)
+            amount = float(amount*42.0)
+            user1 = "Corn"
+            user2 = "Avocado"
+            user3 = "Tomato"
+            user4 = "Eggplant"
+            user5 = "Artichokes"
+            user6 = "Lettuce"
+        # else user_drink == "lettuce":
+        else:
+            amount1 = float(amount*146.0)
+            amount2 = float(amount*141.0)
+            amount3 = float(amount*26.0)
+            amount4 = float(amount*43.0)
+            amount5 = float(amount*98.0)
+            amount6 = float(amount*42.0)
+            amount = float(amount*28.0)
+            user1 = "Corn"
+            user2 = "Avocado"
+            user3 = "Tomato"
+            user4 = "Eggplant"
+            user5 = "Artichokes"
+            user6 = "Cucumbers"
+        results = {
+            "drink": user_drink,
+            "amount": user_amount,
+            "ounces": amount,
+            "ounce1": amount1,
+            "ounce2": amount2,
+            "ounce3": amount3,
+            "ounce4": amount4,
+            "ounce5": amount5,
+            "ounce6": amount6,
+            "drink1": user1,
+            "drink2": user2,
+            "drink3": user3,
+            "drink4": user4,
+            "drink5": user5,
+            "drink6": user6,
+            }
+        self.response.write(template.render(results))
+
+class WaterOther(webapp2.RequestHandler):
+    def get(self):
+        lTemplate = jinja_environment.get_template('html5up-big-picture/other.html')
+        self.response.write(lTemplate.render())
+    def post(self):
+        template = jinja_environment.get_template('html5up-big-picture/infoother.html')
+        user_drink = self.request.get('user_drinktype')
+        user_amount = self.request.get('amount')
+        user_amount = float(user_amount)
+        amount = user_amount
+        if user_drink == "soybeans":
+            amount1 = float(amount*222.0)
+            amount2 = float(amount*299.0)
+            amount3 = float(amount*193.0)
+            amount4 = float(amount*34.0)
+            amount5 = float(amount*290.0)
+            amount6 = float(amount*35.0)
+            amount7 = float(amount*1860.0)
+            amount8 = float(amount*199.0)
+            amount = float(amount*257.0)
+            user1 = "Pasta"
+            user2 = "Rice"
+            user3 = "Bread"
+            user4 = "Potatoes"
+            user5 = "Oats"
+            user6 = "Peppermint"
+            user7 = "Cinnamon"
+            user8 = "Ginger"
+            user_drink == "soybeans"
+        elif user_drink == "Pasta":
+            amount1 = float(amount*257.0)
+            amount2 = float(amount*299.0)
+            amount3 = float(amount*193.0)
+            amount4 = float(amount*34.0)
+            amount5 = float(amount*290.0)
+            amount6 = float(amount*35.0)
+            amount7 = float(amount*1860.0)
+            amount8 = float(amount*199.0)
+            amount = float(amount*222.0)
+            user1 = "Soybeans"
+            user2 = "Rice"
+            user3 = "Bread"
+            user4 = "Potatoes"
+            user5 = "Oats"
+            user6 = "Peppermint"
+            user7 = "Cinnamon"
+            user8 = "Ginger"
+            user_drink == "Pasta"
+        elif user_drink == "rice":
+            amount1 = float(amount*257.0)
+            amount2 = float(amount*222.0)
+            amount3 = float(amount*193.0)
+            amount4 = float(amount*34.0)
+            amount5 = float(amount*290.0)
+            amount6 = float(amount*35.0)
+            amount7 = float(amount*1860.0)
+            amount8 = float(amount*199.0)
+            amount = float(amount*299.0)
+            user1 = "Soybeans"
+            user2 = "Pasta"
+            user3 = "Bread"
+            user4 = "Potatoes"
+            user5 = "Oats"
+            user6 = "Peppermint"
+            user7 = "Cinnamon"
+            user8 = "Ginger"
+            user_drink == "Rice"
+        elif user_drink == "bread":
+            amount1 = float(amount*257.0)
+            amount2 = float(amount*222.0)
+            amount3 = float(amount*299.0)
+            amount4 = float(amount*34.0)
+            amount5 = float(amount*290.0)
+            amount6 = float(amount*35.0)
+            amount7 = float(amount*1860.0)
+            amount8 = float(amount*199.0)
+            amount = float(amount*193.0)
+            user1 = "Soybeans"
+            user2 = "Pasta"
+            user3 = "Rice"
+            user4 = "Potatoes"
+            user5 = "Oats"
+            user6 = "Peppermint"
+            user7 = "Cinnamon"
+            user8 = "Ginger"
+            user_drink == "Bread"
+        elif user_drink == "potatoes":
+            amount1 = float(amount*257.0)
+            amount2 = float(amount*222.0)
+            amount3 = float(amount*299.0)
+            amount4 = float(amount*193.0)
+            amount5 = float(amount*290.0)
+            amount6 = float(amount*35.0)
+            amount7 = float(amount*1860.0)
+            amount8 = float(amount*199.0)
+            amount = float(amount*34.0)
+            user1 = "Soybeans"
+            user2 = "Pasta"
+            user3 = "Rice"
+            user4 = "Bread"
+            user5 = "Oats"
+            user6 = "Peppermint"
+            user7 = "Cinnamon"
+            user8 = "Ginger"
+            user_drink == "Potatoes"
+        elif user_drink == "oats":
+            amount1 = float(amount*257.0)
+            amount2 = float(amount*222.0)
+            amount3 = float(amount*299.0)
+            amount4 = float(amount*193.0)
+            amount5 = float(amount*34.0)
+            amount6 = float(amount*35.0)
+            amount7 = float(amount*1860.0)
+            amount8 = float(amount*199.0)
+            amount = float(amount*290.0)
+            user1 = "Soybeans"
+            user2 = "Pasta"
+            user3 = "Rice"
+            user4 = "Bread"
+            user5 = "Potatoes"
+            user6 = "Peppermint"
+            user7 = "Cinnamon"
+            user8 = "Ginger"
+            user_drink == "Oats"
+        elif user_drink == "peppermint":
+            amount1 = float(amount*257.0)
+            amount2 = float(amount*222.0)
+            amount3 = float(amount*299.0)
+            amount4 = float(amount*193.0)
+            amount5 = float(amount*34.0)
+            amount6 = float(amount*290.0)
+            amount7 = float(amount*1860.0)
+            amount8 = float(amount*199.0)
+            amount = float(amount*35.0)
+            user1 = "Soybeans"
+            user2 = "Pasta"
+            user3 = "Rice"
+            user4 = "Bread"
+            user5 = "Potatoes"
+            user6 = "Oats"
+            user7 = "Cinnamon"
+            user8 = "Ginger"
+            user_drink == "Peppermint"
+        elif user_drink == "cinnamon":
+            amount1 = float(amount*257.0)
+            amount2 = float(amount*222.0)
+            amount3 = float(amount*299.0)
+            amount4 = float(amount*193.0)
+            amount5 = float(amount*34.0)
+            amount6 = float(amount*290.0)
+            amount7 = float(amount*35.0)
+            amount8 = float(amount*199.0)
+            amount = float(amount*1860.0)
+            user1 = "Soybeans"
+            user2 = "Pasta"
+            user3 = "Rice"
+            user4 = "Bread"
+            user5 = "Potatoes"
+            user6 = "Oats"
+            user7 = "Peppermint"
+            user8 = "Ginger"
+            user_drink == "Cinnamon"
+        else:
+            amount1 = float(amount*257.0)
+            amount2 = float(amount*222.0)
+            amount3 = float(amount*299.0)
+            amount4 = float(amount*193.0)
+            amount5 = float(amount*34.0)
+            amount6 = float(amount*290.0)
+            amount7 = float(amount*35.0)
+            amount8 = float(amount*1860.0)
+            amount = float(amount*199.0)
+            user1 = "Soybeans"
+            user2 = "Pasta"
+            user3 = "Rice"
+            user4 = "Bread"
+            user5 = "Potatoes"
+            user6 = "Oats"
+            user7 = "Peppermint"
+            user8 = "Cinnamon"
+            user_drink == "Ginger"
+
+        results = {
+            "drink": user_drink,
+            "amount": user_amount,
+            "ounces": amount,
+            "ounce1": amount1,
+            "ounce2": amount2,
+            "ounce3": amount3,
+            "ounce4": amount4,
+            "ounce5": amount5,
+            "ounce6": amount6,
+            "drink1": user1,
+            "drink2": user2,
+            "drink3": user3,
+            "drink4": user4,
+            "drink5": user5,
+            "drink6": user6,
+            }
+        self.response.write(template.render(results))
+
 app = webapp2.WSGIApplication([
       ('/', MainPage),
       ('/login', LoginPage),
@@ -244,4 +636,7 @@ app = webapp2.WSGIApplication([
       ('/query',QueryHandler),
       ('/water', Water ),
       ('/liquid', Wateroz),
+      ('/meat', WaterMeat),
+      ('/veggies', WaterVeggies),
+      ('/other', WaterOther)
 ])
