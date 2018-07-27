@@ -681,6 +681,10 @@ input, select, textarea {
 
 		}
 
+#head1 {
+	margin-top: 0px;
+}
+
 /* Button */
 
 	input[type="button"],

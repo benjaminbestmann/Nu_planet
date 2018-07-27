@@ -4,6 +4,8 @@ threadsafe: true
 
 
 handlers:
+- url: /favicon
+  static_dir: favicon
 - url: /assets-custom
   static_dir: html5up-big-picture/assets
 - url: /assets
