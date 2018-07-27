@@ -305,7 +305,7 @@ class WaterVeggies(webapp2.RequestHandler):
         self.response.write(lTemplate.render())
     def post(self):
         template = jinja_environment.get_template('html5up-big-picture/infoveggies.html')
-        user_drink = self.request.get('user_drinktype')
+        user_drink = self.request.get('user_vegetable')
         user_amount = self.request.get('amount')
         user_amount = float(user_amount)
         amount = user_amount
@@ -433,7 +433,7 @@ class WaterOther(webapp2.RequestHandler):
         self.response.write(lTemplate.render())
     def post(self):
         template = jinja_environment.get_template('html5up-big-picture/infoother.html')
-        user_drink = self.request.get('user_drinktype')
+        user_drink = self.request.get('user_othertype')
         user_amount = self.request.get('amount')
         user_amount = float(user_amount)
         amount = user_amount
