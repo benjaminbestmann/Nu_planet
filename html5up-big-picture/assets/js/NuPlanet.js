@@ -23,6 +23,17 @@ function callName(){
   }
 }
 
+// function getImage(){
+//   pro_image = document.getElementById("icon");
+//   if (pro_image != null) {
+//     auth = gapi.auth2.getAuthInstance();
+//     user = auth.currentUser.get();
+//     profile = user.getBasicProfile();
+//     img_url = profile.getImageUrl();
+//     pro_image.textContent = img_url;
+//   }
+// }
+
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
   var userdata = {

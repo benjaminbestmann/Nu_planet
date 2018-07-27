@@ -99,10 +99,6 @@ class LoginPage(webapp2.RequestHandler):
 
 class UserPage(webapp2.RequestHandler):
     def get(self):
-        # query1 = UserFood.query()
-        user = users.get_current_user()
-
-        user.id = UserFood.userid
         database = UserFood.query().order()
         print("HELLO LOOK AT THIS")
         print( database)
@@ -115,7 +111,6 @@ class UserPage(webapp2.RequestHandler):
         dict = {
             "string" : food,
             "total": total,
-            # "user": nickname
             }
         userTemplate = jinja_environment.get_template('html5up-big-picture/user.html')
         self.response.write(userTemplate.render(dict))
